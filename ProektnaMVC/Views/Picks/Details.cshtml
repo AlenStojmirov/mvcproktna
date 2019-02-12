@@ -1,0 +1,84 @@
+﻿@model ProektnaMVC.Models.Pick
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pick</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Game)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Odds)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Odds)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stake)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stake)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bookmaker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bookmaker)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Admin")) {
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    }|
+    @Html.ActionLink("Back to Home", "Index","Picks")
+</p>

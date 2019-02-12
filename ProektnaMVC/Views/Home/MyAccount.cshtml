@@ -1,0 +1,170 @@
+﻿@model IEnumerable<ProektnaMVC.Models.Pick>
+
+@{
+    ViewBag.Title = "MyAccount";
+}
+<div class="row text-center" style="margin-top:2em; margin-bottom:2em">
+    <div class="col-md-12">
+        <h2>My Account</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-9">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Data)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sport)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Game)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Picks)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Odds)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Stake)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bookmaker)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Result)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sport)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Game)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Picks)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Odds)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stake)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bookmaker)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Result)
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Admin")) { 
+                                <a href="http://localhost:57494/Picks/Edit/@item.Id">Edit</a>
+                                <a href="http://localhost:57494/Picks/Delete/@item.Id">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div class="col-md-3 text-center">
+            @if (User.IsInRole("Admin")) { 
+            <div style="margin-bottom:1em">
+                <a href="http://localhost:57494/Account/AddUserToRole">
+                    <button class="btn btn-primary btn-block text-center">
+                        Add User To Role
+                    </button>
+                </a>
+            </div>
+            }
+            <div>
+                <a href="http://localhost:57494/Picks/Create">
+                    <button class="btn btn-primary btn-block text-center">
+                        Add New Pick
+                    </button>
+                </a>
+            </div>
+            <div>
+                <h2><b>Picks</b></h2>
+                @{int picks = new int();
+                    foreach (var item in Model)
+                    {
+                        picks++;
+                    }
+                    <h1>@picks</h1>
+                }
+            </div>
+            <div>
+                <h2><b>Profit</b></h2>
+                @{float profit = new float();
+                    foreach(var item in Model)
+                    {
+                        if (item.Result == "Win") {
+                            profit += (item.Odds * item.Stake) - item.Stake;
+                        }else if(item.Result == "Lose")
+                        {
+                            profit -= item.Stake;
+                        }
+                    }
+                    <h1>@profit $</h1>
+                }
+            </div>
+            <div>
+                <h2 class="text-success"><b>Win</b></h2>
+                @{int win = new int();
+                    foreach (var item in Model)
+                    {
+                        if (item.Result == "Win")
+                        {
+                            win++;
+                        }
+                    }
+                    <h1>@win</h1>
+                }
+            </div>
+            <div>
+                <h2 class="text-danger"><b>Lose</b></h2>
+                @{int lost = new int();
+                    foreach (var item in Model)
+                    {
+                        if (item.Result == "Lose")
+                        {
+                            lost++;
+                        }
+                    }
+                    <h1>@lost</h1>
+                }
+            </div>
+            <div>
+                <h2 class="text-warning"><b>Void</b></h2>
+                @{int voidd = new int();
+                    foreach (var item in Model)
+                    {
+                        if (item.Result == "Void")
+                        {
+                            voidd++;
+                        }
+                    }
+                    <h1>@voidd</h1>
+                }
+            </div>
+        </div>
+    </div>
+</div>

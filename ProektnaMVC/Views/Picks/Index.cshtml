@@ -1,0 +1,86 @@
+﻿@model IEnumerable<ProektnaMVC.Models.Pick>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Match</h2>
+
+<div class="row">
+    <div class="col-md-9">
+    <table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Odds)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stake)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bookmaker)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Picks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Odds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stake)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bookmaker)
+        </td>
+        <td>
+            @Html.ActionLink("Read Analysis", "Details", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+    </div>
+    <div class="col-md-3">
+        <div>
+            <a href="http://localhost:57494/Picks/Create">
+                <button class="btn btn-primary btn-block text-center">
+                    Add New Pick
+                </button>
+            </a>
+        </div>
+        <div class="text-center">
+            <h2>Tipsters</h2>
+        </div>
+    </div>
+</div>
